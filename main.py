@@ -92,7 +92,8 @@ if job == "1" :
                 calc = W11 * np.sum(wcoef * np.sqrt(np.sum((WC11-iWC11)**2))) + W12 * np.sum(wcoef * np.sqrt(np.sum((WC12-iWC12)**2))) + W21 * np.sum(wcoef * np.sqrt(np.sum((WC21-iWC21)**2))) + W22 * np.sum(wcoef * np.sqrt(np.sum((WC22-iWC22)**2)))
                 results.append((calc, i))
     
-    sortedResults = sorted(results, key=itemgetter(0))
+
+    sortedResults = sorted(results, key=itemgetter(0),reverse = False)
     end = time.process_time()
 
     print("Time Took to Search: ")
@@ -115,13 +116,12 @@ if job == "1" :
         if numberOfMatchedToReturn > len(sortedResults):
             tempnumberOfMatchedToReturn = len(sortedResults)
 
-        print(len(sortedResults)-numberOfMatchedToReturn)
         for calc, i in sortedResults:
             if c<numberOfMatchedToReturn:
                 cv2.imshow('Found Images '+str(c+1), cv2.resize(cv2.imread(i.path),(500,500)))
                 c+=1           
 
-        cv2.waitKey(10000)
+        cv2.waitKey(100000)
 
         
 
